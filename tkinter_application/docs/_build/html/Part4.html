@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Part4 module &mdash; SchoolManagementSystem 00.00.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d7bb8d4d"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Part2 module" href="Part2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SchoolManagementSystem
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EECE435L</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Part1.html">Part1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part2.html">Part2 module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Part4 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Part4.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.add_course"><code class="docutils literal notranslate"><span class="pre">Database.add_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.add_instructor"><code class="docutils literal notranslate"><span class="pre">Database.add_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.add_student"><code class="docutils literal notranslate"><span class="pre">Database.add_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.assign_instructor_to_course"><code class="docutils literal notranslate"><span class="pre">Database.assign_instructor_to_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.close"><code class="docutils literal notranslate"><span class="pre">Database.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.create_tables"><code class="docutils literal notranslate"><span class="pre">Database.create_tables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.delete_course"><code class="docutils literal notranslate"><span class="pre">Database.delete_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.delete_instructor"><code class="docutils literal notranslate"><span class="pre">Database.delete_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.delete_student"><code class="docutils literal notranslate"><span class="pre">Database.delete_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_course_by_id"><code class="docutils literal notranslate"><span class="pre">Database.get_course_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_courses"><code class="docutils literal notranslate"><span class="pre">Database.get_courses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_instructor_by_id"><code class="docutils literal notranslate"><span class="pre">Database.get_instructor_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_instructors"><code class="docutils literal notranslate"><span class="pre">Database.get_instructors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_student_by_id"><code class="docutils literal notranslate"><span class="pre">Database.get_student_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_student_courses"><code class="docutils literal notranslate"><span class="pre">Database.get_student_courses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.get_students"><code class="docutils literal notranslate"><span class="pre">Database.get_students()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.register_student_to_course"><code class="docutils literal notranslate"><span class="pre">Database.register_student_to_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.update_course"><code class="docutils literal notranslate"><span class="pre">Database.update_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.update_instructor"><code class="docutils literal notranslate"><span class="pre">Database.update_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Part4.Database.update_student"><code class="docutils literal notranslate"><span class="pre">Database.update_student()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SchoolManagementSystem</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">EECE435L</a></li>
+      <li class="breadcrumb-item active">Part4 module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Part4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-Part4">
+<span id="part4-module"></span><h1>Part4 module<a class="headerlink" href="#module-Part4" title="Link to this heading"></a></h1>
+<p>Database Module for School Management System</p>
+<p>This module provides the Database class, which handles all interactions with the SQLite
+database for the School Management System. It includes methods for creating tables,
+adding, updating, deleting, and retrieving records related to students, instructors,
+courses, and registrations.</p>
+<dl class="simple">
+<dt>Dependencies:</dt><dd><ul class="simple">
+<li><p>sqlite3: For interacting with the SQLite database.</p></li>
+<li><p>typing: For type annotations.</p></li>
+<li><p>Part1: Contains the Course, Instructor, and Student classes.</p></li>
+</ul>
+</dd>
+<dt>Classes:</dt><dd><dl class="simple">
+<dt>Database: Manages all database operations including CRUD for students, instructors,</dt><dd><p>courses, and registrations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="Part4.Database">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Part4.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'school.db'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Part4.html#Database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Database management for the School Management System.</p>
+<p>This class provides methods to create necessary tables and perform CRUD operations
+on students, instructors, courses, and registrations within an SQLite database.
+It ensures data integrity through the use of primary keys and foreign keys.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.add_course">
+<span class="sig-name descname"><span class="pre">add_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Part1.html#Part1.Course" title="Part1.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.add_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.add_course" title="Link to this definition"></a></dt>
+<dd><p>Add a new course to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course</strong> (<a class="reference internal" href="Part1.html#Part1.Course" title="Part1.Course"><em>Course</em></a>) – The Course instance to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the course was added successfully, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.add_instructor">
+<span class="sig-name descname"><span class="pre">add_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Part1.html#Part1.Instructor" title="Part1.Instructor"><span class="pre">Instructor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.add_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.add_instructor" title="Link to this definition"></a></dt>
+<dd><p>Add a new instructor to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor</strong> (<a class="reference internal" href="Part1.html#Part1.Instructor" title="Part1.Instructor"><em>Instructor</em></a>) – The Instructor instance to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the instructor was added successfully, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.add_student">
+<span class="sig-name descname"><span class="pre">add_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Part1.html#Part1.Student" title="Part1.Student"><span class="pre">Student</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.add_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.add_student" title="Link to this definition"></a></dt>
+<dd><p>Add a new student to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student</strong> (<a class="reference internal" href="Part1.html#Part1.Student" title="Part1.Student"><em>Student</em></a>) – The Student instance to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the student was added successfully, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.assign_instructor_to_course">
+<span class="sig-name descname"><span class="pre">assign_instructor_to_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">course_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.assign_instructor_to_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.assign_instructor_to_course" title="Link to this definition"></a></dt>
+<dd><p>Assign an instructor to a course.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instructor_id</strong> (<em>str</em>) – The ID of the instructor.</p></li>
+<li><p><strong>course_id</strong> (<em>str</em>) – The ID of the course.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the assignment was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Part4.html#Database.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.close" title="Link to this definition"></a></dt>
+<dd><p>Close the database connection.</p>
+<p>This method should be called when the database operations are complete to ensure
+that all resources are properly released.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.create_tables">
+<span class="sig-name descname"><span class="pre">create_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Part4.html#Database.create_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.create_tables" title="Link to this definition"></a></dt>
+<dd><p>Create the necessary tables for students, instructors, courses, and registrations.</p>
+<p>This method ensures that all required tables are present in the database with
+appropriate constraints such as primary keys, foreign keys, and unique fields.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.delete_course">
+<span class="sig-name descname"><span class="pre">delete_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.delete_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.delete_course" title="Link to this definition"></a></dt>
+<dd><p>Delete a course from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course_id</strong> (<em>str</em>) – The ID of the course to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the deletion was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.delete_instructor">
+<span class="sig-name descname"><span class="pre">delete_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.delete_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.delete_instructor" title="Link to this definition"></a></dt>
+<dd><p>Delete an instructor from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor_id</strong> (<em>str</em>) – The ID of the instructor to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the deletion was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.delete_student">
+<span class="sig-name descname"><span class="pre">delete_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.delete_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.delete_student" title="Link to this definition"></a></dt>
+<dd><p>Delete a student from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student_id</strong> (<em>str</em>) – The ID of the student to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the deletion was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_course_by_id">
+<span class="sig-name descname"><span class="pre">get_course_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_course_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_course_by_id" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a course by its ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course_id</strong> (<em>str</em>) – The ID of the course.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The course record as a tuple if found, None otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_courses">
+<span class="sig-name descname"><span class="pre">get_courses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_courses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_courses" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all courses from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples, each representing a course record.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_instructor_by_id">
+<span class="sig-name descname"><span class="pre">get_instructor_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_instructor_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_instructor_by_id" title="Link to this definition"></a></dt>
+<dd><p>Retrieve an instructor by their ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor_id</strong> (<em>str</em>) – The ID of the instructor.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The instructor record as a tuple if found, None otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_instructors">
+<span class="sig-name descname"><span class="pre">get_instructors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_instructors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_instructors" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all instructors from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples, each representing an instructor record.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_student_by_id">
+<span class="sig-name descname"><span class="pre">get_student_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_student_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_student_by_id" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a student by their ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student_id</strong> (<em>str</em>) – The ID of the student.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The student record as a tuple if found, None otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_student_courses">
+<span class="sig-name descname"><span class="pre">get_student_courses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_student_courses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_student_courses" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all courses a student is registered for.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student_id</strong> (<em>str</em>) – The ID of the student.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of tuples, each representing a course the student is registered for.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.get_students">
+<span class="sig-name descname"><span class="pre">get_students</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/Part4.html#Database.get_students"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.get_students" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all students from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples, each representing a student record.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.register_student_to_course">
+<span class="sig-name descname"><span class="pre">register_student_to_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">course_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.register_student_to_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.register_student_to_course" title="Link to this definition"></a></dt>
+<dd><p>Register a student to a course.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>student_id</strong> (<em>str</em>) – The ID of the student.</p></li>
+<li><p><strong>course_id</strong> (<em>str</em>) – The ID of the course.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the registration was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.update_course">
+<span class="sig-name descname"><span class="pre">update_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Part1.html#Part1.Course" title="Part1.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.update_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.update_course" title="Link to this definition"></a></dt>
+<dd><p>Update a course’s information in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course</strong> (<a class="reference internal" href="Part1.html#Part1.Course" title="Part1.Course"><em>Course</em></a>) – The Course instance with updated information.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the update was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.update_instructor">
+<span class="sig-name descname"><span class="pre">update_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Part1.html#Part1.Instructor" title="Part1.Instructor"><span class="pre">Instructor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.update_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.update_instructor" title="Link to this definition"></a></dt>
+<dd><p>Update an instructor’s information in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor</strong> (<a class="reference internal" href="Part1.html#Part1.Instructor" title="Part1.Instructor"><em>Instructor</em></a>) – The Instructor instance with updated information.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the update was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Part4.Database.update_student">
+<span class="sig-name descname"><span class="pre">update_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Part1.html#Part1.Student" title="Part1.Student"><span class="pre">Student</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/Part4.html#Database.update_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Part4.Database.update_student" title="Link to this definition"></a></dt>
+<dd><p>Update a student’s information in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student</strong> (<a class="reference internal" href="Part1.html#Part1.Student" title="Part1.Student"><em>Student</em></a>) – The Student instance with updated information.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the update was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Part2.html" class="btn btn-neutral float-left" title="Part2 module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Mohamad Bailoun.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
