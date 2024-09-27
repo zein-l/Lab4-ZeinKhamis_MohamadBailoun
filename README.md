@@ -1,8 +1,12 @@
 Lab435
+
 Prerequisites
+
 Python 3.x: Ensure Python 3 is installed on your system.
 Tkinter Module: Tkinter is usually included with Python. If not, you may need to install it separately.
+
 Steps to Run the Application
+
 Navigate to the Application Directory:
 
 Open a terminal or command prompt and change to the directory where Part2.py (the Tkinter application) is located:
@@ -29,4 +33,5 @@ View all records or separate records for students, instructors, courses, and reg
 Edit and delete records by right-clicking on a record in its respective table.
 
 Note
+
 Ensure that any required files (Part1.py, Part4.py, etc.) are in the same directory as Part2.py.
