@@ -9,7 +9,7 @@ Navigate to the Application Directory:
 
 Open a terminal or command prompt and change to the directory where Part2.py (the Tkinter application) is located:
 
-cd /path/to/your/application
+cd Lab4-ZeinKhamis_MohamadBailoun/
 
 Run the Application:
 
