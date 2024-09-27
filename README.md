@@ -16,10 +16,10 @@ Run the Application:
 Execute the following command:
 
 python Part2.py
-If python points to Python 2.x on your system, use python3 instead:
+
+Or if you have Python3 installed:
 
 python3 Part2.py
-Start Using the Application:
 
 The School Management System GUI should now open, and you can begin managing students, instructors, and courses.
 
