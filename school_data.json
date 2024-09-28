@@ -1,0 +1,28 @@
+{
+    "students": [
+        {
+            "name": "zein khamis",
+            "age": 20,
+            "email": "student@example.com",
+            "student_id": "202214409",
+            "registered_courses": []
+        }
+    ],
+    "instructors": [
+        {
+            "name": "professor Iman",
+            "age": 30,
+            "email": "instructor@example.com",
+            "instructor_id": "1",
+            "assigned_courses": []
+        }
+    ],
+    "courses": [
+        {
+            "course_id": "435",
+            "course_name": "eece ",
+            "instructor": null,
+            "enrolled_students": []
+        }
+    ]
+}
