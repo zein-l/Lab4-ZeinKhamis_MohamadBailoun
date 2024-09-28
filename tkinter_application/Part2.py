@@ -1,3 +1,26 @@
+"""
+School Management System Application
+
+This module implements a comprehensive School Management System using Tkinter for the GUI.
+It allows users to manage students, instructors, courses, and registrations. The system
+supports adding, editing, deleting, searching, and assigning instructors to courses. Data
+can be saved to and loaded from JSON or CSV files.
+
+Classes:
+    SchoolManagementSystem: The main application frame containing the GUI components.
+    AddStudent: A window to add a new student to the system.
+    AddInstructor: A window to add a new instructor to the system.
+    AddCourse: A window to add a new course to the system.
+    RegisterCourse: A window to register a student for a course.
+    AssignInstructor: A window to assign an instructor to a course.
+    EditStudent: A window to edit an existing student's information.
+    EditInstructor: A window to edit an existing instructor's information.
+    EditCourse: A window to edit an existing course's information.
+
+Functions:
+    main: Initializes and starts the School Management System application.
+"""
+
 import tkinter as tk
 from tkinter import Button, Frame, Menu, Toplevel, filedialog, messagebox, ttk
 from typing import List
@@ -7,7 +30,21 @@ from Part4 import Database
 
 
 class SchoolManagementSystem(Frame):
+    """
+    The main application frame for the School Management System.
+
+    This class sets up the main window, menus, buttons, and tabs for managing students,
+    instructors, courses, and registrations. It interacts with the Database class to
+    perform CRUD operations and handles data persistence.
+    """
+
     def __init__(self, master=None):
+        """
+        Initialize the SchoolManagementSystem frame.
+
+        Args:
+            master (tk.Widget, optional): The parent widget. Defaults to None.
+        """
         super().__init__(master)
         self.pack(fill=tk.BOTH, expand=True)
         self.master.winfo_toplevel().title("School Management System")
@@ -22,6 +59,11 @@ class SchoolManagementSystem(Frame):
         self.create_tabs()
 
     def create_menu(self):
+        """
+        Create the menu bar with File options.
+
+        Adds 'Save Data', 'Load Data', and 'Exit' options to the File menu.
+        """
         menubar = Menu(self.master)
         self.master.config(menu=menubar)
 
@@ -34,6 +76,10 @@ class SchoolManagementSystem(Frame):
         file_menu.add_command(label="Exit", command=self.master.quit)
 
     def create_main_buttons(self):
+        """
+        Create the main action buttons for adding students, instructors, courses,
+        registering courses, and assigning instructors.
+        """
         button_frame = Frame(self)
         button_frame.pack(pady=10)
 
@@ -66,6 +112,10 @@ class SchoolManagementSystem(Frame):
         self.button_assign_instructor.grid(row=0, column=4, padx=5)
 
     def create_tabs(self):
+        """
+        Create the tabbed interface for viewing all records, students, instructors,
+        courses, and registrations.
+        """
         self.notebook = ttk.Notebook(self)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
@@ -88,6 +138,10 @@ class SchoolManagementSystem(Frame):
         self.create_registrations_tab()
 
     def create_all_records_tab(self):
+        """
+        Create the 'All Records' tab with search functionality and a treeview
+        to display all student, course, and instructor records.
+        """
         frame = self.tab_all_records
 
         search_frame = Frame(frame)
@@ -118,6 +172,10 @@ class SchoolManagementSystem(Frame):
         self.populate_all_records()
 
     def create_students_tab(self):
+        """
+        Create the 'Students' tab with search functionality and a treeview
+        to display student records.
+        """
         frame = self.tab_students
 
         search_frame = Frame(frame)
@@ -148,6 +206,10 @@ class SchoolManagementSystem(Frame):
         self.populate_students()
 
     def create_instructors_tab(self):
+        """
+        Create the 'Instructors' tab with search functionality and a treeview
+        to display instructor records.
+        """
         frame = self.tab_instructors
 
         search_frame = Frame(frame)
@@ -178,6 +240,10 @@ class SchoolManagementSystem(Frame):
         self.populate_instructors()
 
     def create_courses_tab(self):
+        """
+        Create the 'Courses' tab with search functionality and a treeview
+        to display course records.
+        """
         frame = self.tab_courses
 
         search_frame = Frame(frame)
@@ -208,6 +274,10 @@ class SchoolManagementSystem(Frame):
         self.populate_courses()
 
     def create_registrations_tab(self):
+        """
+        Create the 'Registrations' tab with search functionality and a treeview
+        to display registration records.
+        """
         frame = self.tab_registrations
 
         search_frame = Frame(frame)
@@ -238,6 +308,10 @@ class SchoolManagementSystem(Frame):
         self.populate_registrations()
 
     def populate_all_records(self):
+        """
+        Populate the 'All Records' treeview with combined data from students,
+        courses, and instructors.
+        """
         for row in self.tree_all_records.get_children():
             self.tree_all_records.delete(row)
 
@@ -258,6 +332,9 @@ class SchoolManagementSystem(Frame):
             self.tree_all_records.insert("", tk.END, values=record)
 
     def populate_students(self):
+        """
+        Populate the 'Students' treeview with student data from the database.
+        """
         for row in self.tree_students.get_children():
             self.tree_students.delete(row)
 
@@ -266,6 +343,9 @@ class SchoolManagementSystem(Frame):
             self.tree_students.insert("", tk.END, values=student)
 
     def populate_instructors(self):
+        """
+        Populate the 'Instructors' treeview with instructor data from the database.
+        """
         for row in self.tree_instructors.get_children():
             self.tree_instructors.delete(row)
 
@@ -274,6 +354,10 @@ class SchoolManagementSystem(Frame):
             self.tree_instructors.insert("", tk.END, values=instructor)
 
     def populate_courses(self):
+        """
+        Populate the 'Courses' treeview with course data from the database,
+        including instructor information if assigned.
+        """
         for row in self.tree_courses.get_children():
             self.tree_courses.delete(row)
 
@@ -287,6 +371,9 @@ class SchoolManagementSystem(Frame):
             self.tree_courses.insert("", tk.END, values=(course[0], course[1], course[2] if course[2] else "N/A", instructor_name))
 
     def populate_registrations(self):
+        """
+        Populate the 'Registrations' treeview with registration data from the database.
+        """
         for row in self.tree_registrations.get_children():
             self.tree_registrations.delete(row)
 
@@ -306,6 +393,14 @@ class SchoolManagementSystem(Frame):
             self.tree_registrations.insert("", tk.END, values=record)
 
     def search_all_records(self):
+        """
+        Search and display records in the 'All Records' tab based on the search query.
+
+        The search is performed on student ID, student name, course ID, and course name.
+
+        Raises:
+            messagebox.showerror: If the search query is empty.
+        """
         query = self.all_records_search_var.get().strip().lower()
         if not query:
             messagebox.showerror("Input Error", "Please enter a search query.")
@@ -337,10 +432,21 @@ class SchoolManagementSystem(Frame):
             self.tree_all_records.insert("", tk.END, values=record)
 
     def reset_all_records_search(self):
+        """
+        Reset the search in the 'All Records' tab and repopulate all records.
+        """
         self.all_records_search_var.set("")
         self.populate_all_records()
 
     def search_students(self):
+        """
+        Search and display student records based on the search query.
+
+        The search is performed on student ID and name.
+
+        Raises:
+            messagebox.showerror: If the search query is empty.
+        """
         query = self.students_search_var.get().strip().lower()
         if not query:
             messagebox.showerror("Input Error", "Please enter a search query.")
@@ -363,10 +469,21 @@ class SchoolManagementSystem(Frame):
             self.tree_students.insert("", tk.END, values=student)
 
     def reset_students_search(self):
+        """
+        Reset the search in the 'Students' tab and repopulate all student records.
+        """
         self.students_search_var.set("")
         self.populate_students()
 
     def search_instructors(self):
+        """
+        Search and display instructor records based on the search query.
+
+        The search is performed on instructor ID and name.
+
+        Raises:
+            messagebox.showerror: If the search query is empty.
+        """
         query = self.instructors_search_var.get().strip().lower()
         if not query:
             messagebox.showerror("Input Error", "Please enter a search query.")
@@ -389,10 +506,21 @@ class SchoolManagementSystem(Frame):
             self.tree_instructors.insert("", tk.END, values=instructor)
 
     def reset_instructors_search(self):
+        """
+        Reset the search in the 'Instructors' tab and repopulate all instructor records.
+        """
         self.instructors_search_var.set("")
         self.populate_instructors()
 
     def search_courses(self):
+        """
+        Search and display course records based on the search query.
+
+        The search is performed on course ID and course name.
+
+        Raises:
+            messagebox.showerror: If the search query is empty.
+        """
         query = self.courses_search_var.get().strip().lower()
         if not query:
             messagebox.showerror("Input Error", "Please enter a search query.")
@@ -419,10 +547,21 @@ class SchoolManagementSystem(Frame):
             self.tree_courses.insert("", tk.END, values=(course[0], course[1], course[2] if course[2] else "N/A", instructor_name))
 
     def reset_courses_search(self):
+        """
+        Reset the search in the 'Courses' tab and repopulate all course records.
+        """
         self.courses_search_var.set("")
         self.populate_courses()
 
     def search_registrations(self):
+        """
+        Search and display registration records based on the search query.
+
+        The search is performed on student ID, student name, course ID, and course name.
+
+        Raises:
+            messagebox.showerror: If the search query is empty.
+        """
         query = self.registrations_search_var.get().strip().lower()
         if not query:
             messagebox.showerror("Input Error", "Please enter a search query.")
@@ -451,10 +590,23 @@ class SchoolManagementSystem(Frame):
             self.tree_registrations.insert("", tk.END, values=record)
 
     def reset_registrations_search(self):
+        """
+        Reset the search in the 'Registrations' tab and repopulate all registration records.
+        """
         self.registrations_search_var.set("")
         self.populate_registrations()
 
     def save_data(self):
+        """
+        Save the current data (students, instructors, courses, registrations) to a file.
+
+        The user can choose between JSON and CSV file formats. Data is serialized using
+        the DataManagement class.
+
+        Raises:
+            messagebox.showerror: If saving fails due to an exception.
+            messagebox.showinfo: If saving is successful.
+        """
         filetypes = [("JSON files", "*.json"), ("CSV files", "*.csv")]
         filepath = filedialog.asksaveasfilename(
             defaultextension=".json", filetypes=filetypes
@@ -476,6 +628,16 @@ class SchoolManagementSystem(Frame):
             messagebox.showerror("Error", f"Failed to save data: {e}")
 
     def load_data(self):
+        """
+        Load data from a file (JSON or CSV) into the system.
+
+        The user can select a JSON or CSV file. Data is deserialized using the DataManagement class.
+        Existing data in the database is cleared after user confirmation before loading new data.
+
+        Raises:
+            messagebox.showerror: If loading fails due to an exception or invalid data format.
+            messagebox.showinfo: If loading is successful.
+        """
         filetypes = [("JSON files", "*.json"), ("CSV files", "*.csv")]
         filepath = filedialog.askopenfilename(
             filetypes=filetypes
@@ -522,6 +684,12 @@ class SchoolManagementSystem(Frame):
             messagebox.showerror("Error", f"Failed to load data: {e}")
 
     def clear_database(self):
+        """
+        Clear all existing data from the database after user confirmation.
+
+        Raises:
+            messagebox.showerror: If clearing the database fails due to an exception.
+        """
         confirm = messagebox.askyesno("Confirm", "Are you sure you want to clear all existing data?")
         if not confirm:
             return
@@ -536,6 +704,13 @@ class SchoolManagementSystem(Frame):
             messagebox.showerror("Error", f"Failed to clear database: {e}")
 
     def attach_context_menu(self, treeview, tab_type):
+        """
+        Attach a context menu with 'Edit' and 'Delete' options to a treeview.
+
+        Args:
+            treeview (ttk.Treeview): The treeview to attach the context menu to.
+            tab_type (str): The type of tab ('students', 'instructors', etc.) to determine actions.
+        """
         context_menu = Menu(self.master, tearoff=0)
         context_menu.add_command(label="Edit", command=lambda: self.edit_record(treeview, tab_type))
         context_menu.add_command(label="Delete", command=lambda: self.delete_record(treeview, tab_type))
@@ -550,6 +725,13 @@ class SchoolManagementSystem(Frame):
         treeview.bind("<Button-3>", show_context_menu)
 
     def edit_record(self, treeview, tab_type):
+        """
+        Open the appropriate edit window based on the selected tab and record.
+
+        Args:
+            treeview (ttk.Treeview): The treeview containing the selected record.
+            tab_type (str): The type of tab ('students', 'instructors', etc.) to determine which edit window to open.
+        """
         selected_item = treeview.selection()
         if not selected_item:
             messagebox.showerror("Selection Error", "No record selected.")
@@ -569,6 +751,17 @@ class SchoolManagementSystem(Frame):
             messagebox.showinfo("Info", "Please use the specific tabs to edit records.")
 
     def delete_record(self, treeview, tab_type):
+        """
+        Delete the selected record from the database based on the tab type.
+
+        Args:
+            treeview (ttk.Treeview): The treeview containing the selected record.
+            tab_type (str): The type of tab ('students', 'instructors', etc.) to determine which record to delete.
+
+        Raises:
+            messagebox.showerror: If deletion fails due to an exception.
+            messagebox.showinfo: If deletion is successful.
+        """
         selected_item = treeview.selection()
         if not selected_item:
             messagebox.showerror("Selection Error", "No record selected.")
@@ -613,23 +806,53 @@ class SchoolManagementSystem(Frame):
             messagebox.showerror("Error", f"Failed to delete record: {e}")
 
     def new_student_window(self):
+        """
+        Open the 'Add Student' window.
+        """
         AddStudent(self.database, self.populate_students, self.populate_all_records)
 
     def new_instructor_window(self):
+        """
+        Open the 'Add Instructor' window.
+        """
         AddInstructor(self.database, self.populate_instructors, self.populate_courses, self.populate_all_records)
 
     def new_course_window(self):
+        """
+        Open the 'Add Course' window.
+        """
         AddCourse(self.database, self.populate_courses, self.populate_all_records)
 
     def register_course_window(self):
+        """
+        Open the 'Register Course' window.
+        """
         RegisterCourse(self.database, self.populate_registrations, self.populate_all_records)
 
     def assign_instructor_window(self):
+        """
+        Open the 'Assign Instructor' window.
+        """
         AssignInstructor(self.database, self.populate_courses, self.populate_all_records)
 
 
 class AddStudent(Toplevel):
+    """
+    A window for adding a new student to the system.
+
+    This window collects student details such as name, age, email, and student ID.
+    Upon successful addition, it refreshes the student and all records views.
+    """
+
     def __init__(self, database, refresh_callback, refresh_all_records_callback):
+        """
+        Initialize the AddStudent window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            refresh_callback (callable): Function to refresh the students view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Add a Student")
         self.database = database
@@ -662,6 +885,16 @@ class AddStudent(Toplevel):
         self.button_add.pack(pady=20)
 
     def add_student(self):
+        """
+        Add a new student to the database based on the input fields.
+
+        Validates input data and shows appropriate error messages. If successful,
+        refreshes the views and closes the window.
+
+        Raises:
+            messagebox.showerror: If input validation fails or addition to the database fails.
+            messagebox.showinfo: If the student is added successfully.
+        """
         name = self.entry_name.get().strip()
         age = self.entry_age.get().strip()
         email = self.entry_email.get().strip()
@@ -698,7 +931,23 @@ class AddStudent(Toplevel):
 
 
 class AddInstructor(Toplevel):
+    """
+    A window for adding a new instructor to the system.
+
+    This window collects instructor details such as name, age, email, and instructor ID.
+    Upon successful addition, it refreshes the instructor, courses, and all records views.
+    """
+
     def __init__(self, database, refresh_callback, refresh_courses_callback, refresh_all_records_callback):
+        """
+        Initialize the AddInstructor window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            refresh_callback (callable): Function to refresh the instructors view.
+            refresh_courses_callback (callable): Function to refresh the courses view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Add an Instructor")
         self.database = database
@@ -732,6 +981,16 @@ class AddInstructor(Toplevel):
         self.button_add.pack(pady=20)
 
     def add_instructor(self):
+        """
+        Add a new instructor to the database based on the input fields.
+
+        Validates input data and shows appropriate error messages. If successful,
+        refreshes the views and closes the window.
+
+        Raises:
+            messagebox.showerror: If input validation fails or addition to the database fails.
+            messagebox.showinfo: If the instructor is added successfully.
+        """
         name = self.entry_name.get().strip()
         age = self.entry_age.get().strip()
         email = self.entry_email.get().strip()
@@ -769,7 +1028,23 @@ class AddInstructor(Toplevel):
 
 
 class AddCourse(Toplevel):
+    """
+    A window for adding a new course to the system.
+
+    This window collects course details such as course ID, course name, and
+    optionally assigns an instructor to the course. Upon successful addition,
+    it refreshes the courses and all records views.
+    """
+
     def __init__(self, database, refresh_callback, refresh_all_records_callback):
+        """
+        Initialize the AddCourse window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            refresh_callback (callable): Function to refresh the courses view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Add a Course")
         self.database = database
@@ -810,6 +1085,17 @@ class AddCourse(Toplevel):
         self.button_add.pack(pady=20)
 
     def add_course(self):
+        """
+        Add a new course to the database based on the input fields.
+
+        Validates input data, handles optional instructor assignment, and shows
+        appropriate error messages. If successful, refreshes the views and closes
+        the window.
+
+        Raises:
+            messagebox.showerror: If input validation fails or addition to the database fails.
+            messagebox.showinfo: If the course is added successfully.
+        """
         course_id = self.entry_course_id.get().strip()
         course_name = self.entry_course_name.get().strip()
         selected_instructor = self.selected_instructor.get()
@@ -860,7 +1146,22 @@ class AddCourse(Toplevel):
 
 
 class RegisterCourse(Toplevel):
+    """
+    A window for registering a student to a course.
+
+    This window allows the user to select a student and a course from dropdown menus.
+    Upon successful registration, it refreshes the registrations and all records views.
+    """
+
     def __init__(self, database, refresh_callback, refresh_all_records_callback):
+        """
+        Initialize the RegisterCourse window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            refresh_callback (callable): Function to refresh the registrations view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Register Student for a Course")
         self.database = database
@@ -915,14 +1216,36 @@ class RegisterCourse(Toplevel):
         self.button_register.pack(pady=20)
 
     def get_students(self) -> list[str]:
+        """
+        Retrieve a list of students formatted for the dropdown menu.
+
+        Returns:
+            list[str]: A list of strings in the format "student_id: name".
+        """
         students = self.database.get_students()
         return [f"{student[0]}: {student[1]}" for student in students]
 
     def get_courses(self) -> list[str]:
+        """
+        Retrieve a list of courses formatted for the dropdown menu.
+
+        Returns:
+            list[str]: A list of strings in the format "course_id: course_name".
+        """
         courses = self.database.get_courses()
         return [f"{course[0]}: {course[1]}" for course in courses]
 
     def register(self):
+        """
+        Register the selected student to the selected course.
+
+        Validates selections and updates the database accordingly. Shows appropriate
+        error messages or success notifications.
+
+        Raises:
+            messagebox.showerror: If input validation fails or registration fails.
+            messagebox.showinfo: If registration is successful.
+        """
         selected_student = self.selected_student.get()
         selected_course = self.selected_course.get()
 
@@ -962,7 +1285,22 @@ class RegisterCourse(Toplevel):
 
 
 class AssignInstructor(Toplevel):
+    """
+    A window for assigning an instructor to a course.
+
+    This window allows the user to select an instructor and a course from dropdown menus.
+    Upon successful assignment, it refreshes the courses and all records views.
+    """
+
     def __init__(self, database, refresh_courses_callback, refresh_all_records_callback):
+        """
+        Initialize the AssignInstructor window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            refresh_courses_callback (callable): Function to refresh the courses view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Assign Instructor to Course")
         self.database = database
@@ -1021,14 +1359,36 @@ class AssignInstructor(Toplevel):
         self.button_assign.pack(pady=20)
 
     def get_instructors(self) -> list[str]:
+        """
+        Retrieve a list of instructors formatted for the dropdown menu.
+
+        Returns:
+            list[str]: A list of strings in the format "instructor_id: name".
+        """
         instructors = self.database.get_instructors()
         return [f"{instr[0]}: {instr[1]}" for instr in instructors]
 
     def get_courses(self) -> list[str]:
+        """
+        Retrieve a list of courses formatted for the dropdown menu.
+
+        Returns:
+            list[str]: A list of strings in the format "course_id: course_name".
+        """
         courses = self.database.get_courses()
         return [f"{course[0]}: {course[1]}" for course in courses]
 
     def assign(self):
+        """
+        Assign the selected instructor to the selected course.
+
+        Validates selections and updates the database accordingly. Shows appropriate
+        error messages or success notifications.
+
+        Raises:
+            messagebox.showerror: If input validation fails or assignment fails.
+            messagebox.showinfo: If assignment is successful.
+        """
         selected_instructor = self.selected_instructor.get()
         selected_course = self.selected_course.get()
 
@@ -1058,7 +1418,23 @@ class AssignInstructor(Toplevel):
 
 
 class EditStudent(Toplevel):
+    """
+    A window for editing an existing student's information.
+
+    This window allows the user to update the name, age, and email of a selected student.
+    Upon successful update, it refreshes the student and all records views.
+    """
+
     def __init__(self, database, student_values, refresh_callback, refresh_all_records_callback):
+        """
+        Initialize the EditStudent window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            student_values (tuple): The selected student's values from the treeview.
+            refresh_callback (callable): Function to refresh the students view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Edit Student")
         self.database = database
@@ -1096,6 +1472,16 @@ class EditStudent(Toplevel):
         self.button_update.pack(pady=20)
 
     def update_student(self):
+        """
+        Update the student's information in the database based on the input fields.
+
+        Validates input data and shows appropriate error messages. If successful,
+        refreshes the views and closes the window.
+
+        Raises:
+            messagebox.showerror: If input validation fails or update to the database fails.
+            messagebox.showinfo: If the student is updated successfully.
+        """
         name = self.entry_name.get().strip()
         age = self.entry_age.get().strip()
         email = self.entry_email.get().strip()
@@ -1131,7 +1517,24 @@ class EditStudent(Toplevel):
 
 
 class EditInstructor(Toplevel):
+    """
+    A window for editing an existing instructor's information.
+
+    This window allows the user to update the name, age, and email of a selected instructor.
+    Upon successful update, it refreshes the instructor, courses, and all records views.
+    """
+
     def __init__(self, database, instructor_values, refresh_callback, refresh_courses_callback, refresh_all_records_callback):
+        """
+        Initialize the EditInstructor window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            instructor_values (tuple): The selected instructor's values from the treeview.
+            refresh_callback (callable): Function to refresh the instructors view.
+            refresh_courses_callback (callable): Function to refresh the courses view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Edit Instructor")
         self.database = database
@@ -1170,6 +1573,16 @@ class EditInstructor(Toplevel):
         self.button_update.pack(pady=20)
 
     def update_instructor(self):
+        """
+        Update the instructor's information in the database based on the input fields.
+
+        Validates input data and shows appropriate error messages. If successful,
+        refreshes the views and closes the window.
+
+        Raises:
+            messagebox.showerror: If input validation fails or update to the database fails.
+            messagebox.showinfo: If the instructor is updated successfully.
+        """
         name = self.entry_name.get().strip()
         age = self.entry_age.get().strip()
         email = self.entry_email.get().strip()
@@ -1206,7 +1619,24 @@ class EditInstructor(Toplevel):
 
 
 class EditCourse(Toplevel):
+    """
+    A window for editing an existing course's information.
+
+    This window allows the user to update the course name and optionally assign
+    an instructor to the course. Upon successful update, it refreshes the courses
+    and all records views.
+    """
+
     def __init__(self, database, course_values, refresh_callback, refresh_all_records_callback):
+        """
+        Initialize the EditCourse window.
+
+        Args:
+            database (Database): The database instance to interact with.
+            course_values (tuple): The selected course's values from the treeview.
+            refresh_callback (callable): Function to refresh the courses view.
+            refresh_all_records_callback (callable): Function to refresh the all records view.
+        """
         super().__init__()
         self.title("Edit Course")
         self.database = database
@@ -1256,6 +1686,17 @@ class EditCourse(Toplevel):
         self.button_update.pack(pady=20)
 
     def update_course(self):
+        """
+        Update the course's information in the database based on the input fields.
+
+        Validates input data, handles optional instructor assignment, and shows
+        appropriate error messages. If successful, refreshes the views and closes
+        the window.
+
+        Raises:
+            messagebox.showerror: If input validation fails or update to the database fails.
+            messagebox.showinfo: If the course is updated successfully.
+        """
         course_name = self.entry_course_name.get().strip()
         selected_instructor = self.selected_instructor.get()
 
@@ -1305,6 +1746,11 @@ class EditCourse(Toplevel):
 
 
 def main():
+    """
+    Initialize and start the School Management System application.
+
+    Creates the main Tkinter window and starts the main event loop.
+    """
     root = tk.Tk()
     app = SchoolManagementSystem(master=root)
     app.mainloop()
@@ -1312,3 +1758,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
