@@ -29,7 +29,11 @@
    python3 Part2.py
    ```
 
-3. **Start Using the Application**:
+   For the pyqt files made by the other student (Zein Khamis) :
+
+   Kindly run pyqt_school_management.py 
+
+4. **Start Using the Application**:
 
    - The School Management System GUI should now open.
    - You can add new students and instructors by providing their name, age, email, and ID.
