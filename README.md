@@ -31,7 +31,11 @@
 
    For the pyqt files made by the other student (Zein Khamis) :
 
-   Kindly run pyqt_school_management.py 
+   Kindly run:
+   
+   ```bash
+   pyqt_school_management.py
+   ```
 
 4. **Start Using the Application**:
 
